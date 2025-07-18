@@ -1,1 +1,7 @@
-zstack-2025
+1, bug fixed: When APS-Retry packet was sent but its memory allocating is Failed, the AF_DATA_CONFIRM event will be lost.
+
+2, bug fixed: The joining node scan beacons, when it try to join into next beacon in beacon-list, it will release the previous beacon. But it will get the next beacon from the pointer of the previous released beacon.
+
+3, ZCL support attributes with manufacture code and specific command with manufacture code.
+
+4, ZDP command can set a callback function triggered by AF_DATA_CONFIRM event. 
