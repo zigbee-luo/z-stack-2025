@@ -64,7 +64,7 @@
 **************************************************************************************************/
 
 #ifndef TOUCHLINK_INITIATOR_APP_H
-#define TOUCHLINK_INTITATOR_APP_H
+#define TOUCHLINK_INITIATOR_APP_H
 
 /*********************************************************************
  * INCLUDES
@@ -107,4 +107,4 @@ extern void touchLinkApp_registerFindingBindingCb(tl_BDBFindingBindingCb_t fbCb)
 }
 #endif
 
-#endif /* TOUCHLINK_INTITATOR_APP_H */
+#endif /* TOUCHLINK_INITIATOR_APP_H */
