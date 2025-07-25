@@ -136,7 +136,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_BASIC_ZCL_VERSION,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_ZCLVersion
     }
   },
@@ -146,7 +146,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
       ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_HWRevision  // Pointer to attribute variable
     }
   },
@@ -156,7 +156,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-	  (uint16_t)0,
+	  NULL_MANUFACTURER_CODE,
       (void *)zclSampleTemperatureSensor_ManufacturerName
     }
   },
@@ -166,7 +166,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_BASIC_POWER_SOURCE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_PowerSource
     }
   },
@@ -176,7 +176,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_PhysicalEnvironment
     }
   },
@@ -186,7 +186,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_basic_clusterRevision
     }
   },
@@ -197,7 +197,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_IDENTIFY_IDENTIFY_TIME,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_IdentifyTime
     }
   },
@@ -207,7 +207,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_GLOBAL,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_identify_clusterRevision
     }
   },
@@ -219,7 +219,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_TEMPERATURE_MEASUREMENT_MEASURED_VALUE,
       ZCL_DATATYPE_INT16,
       ACCESS_CONTROL_READ | ACCESS_REPORTABLE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_MeasuredValue
     }
   },
@@ -229,7 +229,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_TEMPERATURE_MEASUREMENT_MIN_MEASURED_VALUE,
       ZCL_DATATYPE_INT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_MinMeasuredValue
     }
   },
@@ -239,7 +239,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_TEMPERATURE_MEASUREMENT_MAX_MEASURED_VALUE,
       ZCL_DATATYPE_INT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_MaxMeasuredValue
     }
   },
@@ -250,7 +250,7 @@ CONST zclAttrRec_t zclSampleTemperatureSensor_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleTemperatureSensor_temperaturems_clusterRevision
     }
   },

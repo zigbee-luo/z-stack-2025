@@ -348,7 +348,7 @@ static CONST zclAttrRec_t zclKE_ZCL_AttrList[] =
       ATTRID_KE_SUITE,
       ZCL_DATATYPE_ENUM16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclKE_SupportedSuites
     }
   },

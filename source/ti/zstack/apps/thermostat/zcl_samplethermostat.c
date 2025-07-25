@@ -362,6 +362,7 @@ GpSink_AppCallbacks_t zclSampleThermostat_GpSink_AppCallbacks =
     NULL,                               //StepUpWithOnOffCmd;
     NULL,                               //StepDownWithOnOffCmd;
 #endif
+#ifdef ZCL_LEVEL_CTRL
     NULL,                               //MoveHueStopCmd;
     NULL,                               //MoveHueUpCmd;
     NULL,                               //MoveHueDownCmd;
@@ -374,6 +375,7 @@ GpSink_AppCallbacks_t zclSampleThermostat_GpSink_AppCallbacks =
     NULL,                               //StepSaturationDownCmd;
     NULL,                               //MoveColorCmd;
     NULL,                               //StepColorCmd;
+#endif
 #ifdef ZCL_DOORLOCK
     NULL,                               //LockDoorCmd;
     NULL,                               //UnlockDoorCmd;

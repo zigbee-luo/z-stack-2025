@@ -141,7 +141,7 @@ uint8_t  zclSampleLight_ScenesValid = 0;
 uint8_t  zclSampleLight_ScenesNameSupport = 0;
 
 
-#if ZCL_DISCOVER
+#ifdef ZCL_DISCOVER
 CONST zclCommandRec_t zclSampleLight_Cmds[] =
 {
   {
@@ -227,7 +227,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_BASIC_ZCL_VERSION,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_ZCLVersion
     }
   },
@@ -237,7 +237,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
       ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_HWRevision  // Pointer to attribute variable
     }
   },
@@ -247,7 +247,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleLight_ManufacturerName
     }
   },
@@ -257,7 +257,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_BASIC_POWER_SOURCE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_PowerSource
     }
   },
@@ -267,7 +267,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_PhysicalEnvironment
     }
   },
@@ -277,7 +277,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_basic_clusterRevision
     }
   },
@@ -289,7 +289,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_IDENTIFY_IDENTIFY_TIME,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_IdentifyTime
     }
   },
@@ -299,7 +299,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_identify_clusterRevision
     }
   },
@@ -312,7 +312,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_ON_OFF_ON_OFF,
       ZCL_DATATYPE_BOOLEAN,
       ACCESS_CONTROL_READ | ACCESS_REPORTABLE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void*)&zclSampleLight_OnOff
     }
   },
@@ -322,7 +322,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_onoff_clusterRevision
     }
   },
@@ -334,7 +334,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_CURRENT_LEVEL,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ | ACCESS_REPORTABLE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void*)&zclSampleLight_LevelCurrentLevel
     }
   },
@@ -344,7 +344,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_REMAINING_TIME,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_LevelRemainingTime
     }
   },
@@ -354,7 +354,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_ON_OFF_TRANSITION_TIME,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_LevelOnOffTransitionTime
     }
   },
@@ -364,7 +364,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_ON_LEVEL,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_LevelOnLevel
     }
   },
@@ -374,7 +374,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_ON_TRANSITION_TIME,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_LevelOnTransitionTime
     }
   },
@@ -384,7 +384,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_OFF_TRANSITION_TIME,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_LevelOffTransitionTime
     }
   },
@@ -394,7 +394,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_LEVEL_DEFAULT_MOVE_RATE,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_LevelDefaultMoveRate
     }
   },
@@ -404,7 +404,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_level_clusterRevision
     }
   },
@@ -416,7 +416,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_GROUPS_NAME_SUPPORT,
       ZCL_DATATYPE_BITMAP8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void*)&zclSampleLight_GroupsNameSupport
     }
   },
@@ -427,7 +427,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_groups_clusterRevision
     }
   },
@@ -439,7 +439,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_SCENES_SCENE_COUNT,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       NULL // Use application's callback to Read this attribute
     }
   },
@@ -449,7 +449,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_SCENES_CURRENT_SCENE,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_ScenesCurrentScene
     }
   },
@@ -459,7 +459,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_SCENES_CURRENT_GROUP,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_ScenesCurrentGroup
     }
   },
@@ -469,7 +469,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_SCENES_SCENE_VALID,
       ZCL_DATATYPE_BOOLEAN,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_ScenesValid
     }
   },
@@ -479,7 +479,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_SCENES_NAME_SUPPORT,
       ZCL_DATATYPE_BITMAP8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_ScenesNameSupport
     }
   },
@@ -489,7 +489,7 @@ CONST zclAttrRec_t zclSampleLight_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleLight_scenes_clusterRevision
     }
   },

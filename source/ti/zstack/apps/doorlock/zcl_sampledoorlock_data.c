@@ -121,7 +121,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_BASIC_ZCL_VERSION,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_ZCLVersion
     }
   },
@@ -131,7 +131,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
       ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_HWRevision  // Pointer to attribute variable
     }
   },
@@ -141,7 +141,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleDoorLock_ManufacturerName
     }
   },
@@ -151,7 +151,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_BASIC_POWER_SOURCE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_PowerSource
     }
   },
@@ -161,7 +161,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_PhysicalEnvironment
     }
   },
@@ -171,7 +171,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_basic_clusterRevision
     }
   },
@@ -183,7 +183,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_IDENTIFY_IDENTIFY_TIME,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_IdentifyTime
     }
   },
@@ -193,7 +193,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_identify_clusterRevision
     }
   },
@@ -205,7 +205,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_SCENES_SCENE_COUNT,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       NULL // Use application's callback to Read this attribute
     }
   },
@@ -215,7 +215,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_SCENES_CURRENT_SCENE,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_ScenesCurrentScene
     }
   },
@@ -225,7 +225,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_SCENES_CURRENT_GROUP,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_ScenesCurrentGroup
     }
   },
@@ -235,7 +235,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_SCENES_SCENE_VALID,
       ZCL_DATATYPE_BOOLEAN,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_ScenesValid
     }
   },
@@ -245,7 +245,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_SCENES_NAME_SUPPORT,
       ZCL_DATATYPE_BITMAP8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_ScenesNameSupport
     }
   },
@@ -255,7 +255,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_scenes_clusterRevision
     }
   },
@@ -266,7 +266,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_DOOR_LOCK_LOCK_STATE,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_REPORTABLE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void*)&zclSampleDoorLock_LockState
     }
   },
@@ -276,7 +276,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_DOOR_LOCK_LOCK_TYPE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_LockType
     }
   },
@@ -286,7 +286,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_DOOR_LOCK_ACTUATOR_ENABLED,
       ZCL_DATATYPE_BOOLEAN,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_ActuatorEnabled
     }
   },
@@ -296,7 +296,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_doorlock_clusterRevision
     }
   },
@@ -306,7 +306,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_GROUPS_NAME_SUPPORT,
       ZCL_DATATYPE_BITMAP8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void*)&zclSampleDoorLock_GroupsNameSupport
     }
   },
@@ -316,7 +316,7 @@ CONST zclAttrRec_t zclSampleDoorLock_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLock_groups_clusterRevision
     }
   },

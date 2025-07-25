@@ -282,7 +282,7 @@ static uint8_t zclSampleLight_SceneStoreCB(zclSceneReq_t *pReq);
 static void  zclSampleLight_SceneRecallCB(zclSceneReq_t *pReq);
 static void  zclSampleLight_OnOffCB( uint8_t cmd );
 ZStatus_t zclSampleLight_ReadWriteAttrCB( uint8_t endpoint, zclAttrRec_t *pAttr,
-                                         uint8_t oper, uint8_t *pValue, uint16_t *pLen );
+                                          uint8_t oper, uint8_t *pValue, uint16_t *pLen );
 
 
 static void zclSampleLight_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *bdbCommissioningModeMsg);
@@ -453,6 +453,7 @@ GpSink_AppCallbacks_t zclSampleLight_GpSink_AppCallbacks =
     NULL,                               //StepUpWithOnOffCmd;
     NULL,                               //StepDownWithOnOffCmd;
 #endif
+#ifdef ZCL_LIGHTING
     NULL,                               //MoveHueStopCmd;
     NULL,                               //MoveHueUpCmd;
     NULL,                               //MoveHueDownCmd;
@@ -465,6 +466,7 @@ GpSink_AppCallbacks_t zclSampleLight_GpSink_AppCallbacks =
     NULL,                               //StepSaturationDownCmd;
     NULL,                               //MoveColorCmd;
     NULL,                               //StepColorCmd;
+#endif
 #ifdef ZCL_DOORLOCK
     NULL,                               //LockDoorCmd;
     NULL,                               //UnlockDoorCmd;
@@ -2495,14 +2497,14 @@ static uint8_t zclSampleLight_SceneStoreCB( zclSceneReq_t *pReq )
  *
  * @return  status
  */
-ZStatus_t zclSampleLight_ReadWriteAttrCB( uint16_t clusterId, uint16_t attrId, uint8_t oper,
-                                         uint8_t *pValue, uint16_t *pLen )
+ZStatus_t zclSampleLight_ReadWriteAttrCB( uint8_t endpoint, zclAttrRec_t *pAttr,
+                                          uint8_t oper, uint8_t *pValue, uint16_t *pLen )
 {
-    if(clusterId == ZCL_CLUSTER_ID_GENERAL_SCENES)
+    if(pAttr->clusterID == ZCL_CLUSTER_ID_GENERAL_SCENES)
     {
-        if(attrId == ATTRID_SCENES_SCENE_COUNT)
+        if(pAttr->attr.attrId == ATTRID_SCENES_SCENE_COUNT)
         {
-           return zclGeneral_ReadSceneCountCB(clusterId,attrId,oper,pValue,pLen);
+           return zclGeneral_ReadSceneCountCB(pAttr->clusterID,pAttr->attr.attrId,oper,pValue,pLen);
         }
     }
     return ZSuccess;

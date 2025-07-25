@@ -155,7 +155,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_BASIC_ZCL_VERSION,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_ZCLVersion
     }
   },
@@ -165,7 +165,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
       ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_HWRevision  // Pointer to attribute variable
     }
   },
@@ -175,7 +175,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleWarningDevice_ManufacturerName
     }
   },
@@ -185,7 +185,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_BASIC_POWER_SOURCE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_PowerSource
     }
   },
@@ -195,7 +195,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_PhysicalEnvironment
     }
   },
@@ -205,7 +205,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_basic_clusterRevision
     }
   },
@@ -217,7 +217,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IDENTIFY_IDENTIFY_TIME,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_IdentifyTime
     }
   },
@@ -227,7 +227,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_identify_clusterRevision
     }
   },
@@ -238,7 +238,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IASWD_MAX_DURATION,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_MaxDuration
     }
   },
@@ -248,7 +248,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_iasWd_clusterRevision
     }
   },
@@ -259,7 +259,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IAS_ZONE_ZONE_STATE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_ZoneState
     }
   },
@@ -269,7 +269,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IAS_ZONE_ZONE_TYPE,
       ZCL_DATATYPE_ENUM16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_ZoneType
     }
   },
@@ -279,7 +279,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IAS_ZONE_ZONE_STATUS,
       ZCL_DATATYPE_BITMAP16,
       ACCESS_CONTROL_READ,
-	  (uint16_t)0,
+	  NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_ZoneStatus
     }
   },
@@ -289,7 +289,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_SS_IAS_CIE_ADDRESS,
       ZCL_DATATYPE_IEEE_ADDR,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleWarningDevice_CIE_Address
     }
   },
@@ -299,7 +299,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IAS_ZONE_ZONE_ID,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_ZoneId
     }
   },
@@ -309,7 +309,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_iasZone_clusterRevision
     }
   },

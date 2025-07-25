@@ -162,7 +162,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_BASIC_ZCL_VERSION,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_ZCLVersion
     }
   },
@@ -172,7 +172,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
       ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_HWRevision  // Pointer to attribute variable
     }
   },
@@ -182,7 +182,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleSw_ManufacturerName
     }
   },
@@ -192,7 +192,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_BASIC_POWER_SOURCE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_PowerSource
     }
   },
@@ -202,7 +202,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_PhysicalEnvironment
     }
   },
@@ -212,7 +212,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_basic_clusterRevision
     }
   },
@@ -224,7 +224,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_IDENTIFY_IDENTIFY_TIME,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_IdentifyTime
     }
   },
@@ -234,7 +234,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_GLOBAL,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_identify_clusterRevision
     }
   },
@@ -245,7 +245,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleSw_onoff_clusterRevision
     }
   }
@@ -256,7 +256,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_UPGRADE_SERVER_ID,
       ZCL_DATATYPE_IEEE_ADDR ,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_UpgradeServerID
     }
   },
@@ -266,7 +266,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_FILE_OFFSET,
       ZCL_DATATYPE_UINT32,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_FileOffset
     }
   },
@@ -276,7 +276,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_CURRENT_FILE_VERSION,
       ZCL_DATATYPE_UINT32,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_CurrentFileVersion
     }
   },
@@ -286,7 +286,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_CURRENT_ZIG_BEE_STACK_VERSION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_CurrentZigBeeStackVersion
     }
   },
@@ -296,7 +296,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_DOWNLOADED_FILE_VERSION,
       ZCL_DATATYPE_UINT32,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_DownloadedFileVersion
     }
   },
@@ -306,7 +306,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_DOWNLOADED_ZIG_BEE_STACK_VERSION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_DownloadedZigBeeStackVersion
     }
   },
@@ -316,7 +316,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_IMAGE_UPGRADE_STATUS,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_ImageUpgradeStatus
     }
   },
@@ -326,7 +326,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_MANUFACTURER_ID,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_ManufacturerID
     }
   },
@@ -336,7 +336,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_IMAGE_TYPE_ID,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_ImageType
     }
   },
@@ -346,7 +346,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_OTA_UPGRADE_MINIMUM_BLOCK_PERIOD,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_MinBlockReqDelay
     }
   },
@@ -356,7 +356,7 @@ CONST zclAttrRec_t zclSampleSw_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       ( void * ) &zclSampleSw_ota_clusterRevision
     }
   }

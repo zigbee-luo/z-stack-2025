@@ -175,8 +175,7 @@ extern uint8_t gp_getProxyTableByIndex( uint16_t nvIndex, uint8_t *pEntry );
 /*
  * @brief   Handle Gp attributes.
  */
-extern ZStatus_t zclGpp_ReadWriteAttrCB( uint16_t clusterId, uint16_t attrId, uint8_t oper,
-                                         uint8_t *pValue, uint16_t *pLen );
+// zclGpp_ReadWriteAttrCB is no longer used, its declaration removed by Luoyiming 2025-07-25
 
 /*
  * @brief       General function fill the proxy table vector

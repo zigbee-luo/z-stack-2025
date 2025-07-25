@@ -109,7 +109,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_BASIC_ZCL_VERSION,
       ZCL_DATATYPE_UINT8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_ZCLVersion
     }
   },
@@ -119,7 +119,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
       ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_HWRevision  // Pointer to attribute variable
     }
   },
@@ -129,7 +129,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleDoorLockController_ManufacturerName
     }
   },
@@ -139,7 +139,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_BASIC_POWER_SOURCE,
       ZCL_DATATYPE_ENUM8,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_PowerSource
     }
   },
@@ -149,7 +149,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
       ZCL_DATATYPE_ENUM8,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_PhysicalEnvironment
     }
   },
@@ -159,7 +159,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_basic_clusterRevision
     }
   },
@@ -170,7 +170,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_IDENTIFY_IDENTIFY_TIME,
       ZCL_DATATYPE_UINT16,
       (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_IdentifyTime
     }
   },
@@ -180,7 +180,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_GLOBAL,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_identify_clusterRevision
     }
   },
@@ -190,7 +190,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_scenes_clusterRevision
     }
   },
@@ -200,7 +200,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_groups_clusterRevision
     }
   },
@@ -210,7 +210,7 @@ CONST zclAttrRec_t zclSampleDoorLockController_Attrs[] =
       ATTRID_CLUSTER_REVISION,
       ZCL_DATATYPE_UINT16,
       ACCESS_CONTROL_READ | ACCESS_CLIENT,
-      (uint16_t)0,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleDoorLockController_doorlock_clusterRevision
     }
   },

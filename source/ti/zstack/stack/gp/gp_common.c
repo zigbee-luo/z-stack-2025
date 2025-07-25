@@ -187,7 +187,7 @@ static uint8_t  zclGp_gpsActiveFunctionality[3] = GPS_ACTIVE_FUNCTIONALITY;
 #endif
 
 // PROXY
-static uint8_t  pZclGp_gppProxyTable[GPP_MAX_PROXY_TABLE_ENTRIES][PROXY_TBL_LEN];
+// "pZclGp_gppProxyTable" is removed and this attribute is accessed by application's callback, luoyiming fixed in 2025-07-25
 static uint8_t  zclGp_gppMaxProxyTableEntries = GPP_MAX_PROXY_TABLE_ENTRIES;
 static uint8_t  zclGp_gppNotificationRetryNumber = GPP_NOTIFICATION_RETRY_NUMBER;
 static uint8_t  zclGp_gppNotificationRetryTimer = GPP_NOTIFICATION_RETRY_TIMER;
@@ -212,7 +212,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_MAX_SINK_TABLE_ENTRIES,
      ZCL_DATATYPE_UINT8,
      ACCESS_CONTROL_READ,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsMaxSinkTableEntries
   }
  },
@@ -222,7 +222,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_SINK_TABLE,
      ZCL_DATATYPE_LONG_OCTET_STR,
      ACCESS_CONTROL_READ,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      NULL // Use application's callback to Read this attribute
   }
  },
@@ -232,7 +232,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_COMMUNICATION_MODE,
      ZCL_DATATYPE_BITMAP8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsCommunicationMode
   }
  },
@@ -242,7 +242,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_COMMISSIONING_EXIT_MODE,
      ZCL_DATATYPE_BITMAP8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsCommissioningExitMode
   }
  },
@@ -252,7 +252,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_COMMISSIONING_WINDOW,
      ZCL_DATATYPE_UINT16,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsCommissioningWindow
   }
  },
@@ -262,7 +262,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_SECURITY_LEVEL,
      ZCL_DATATYPE_BITMAP8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsSecurityLevel
   }
  },
@@ -272,7 +272,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_FUNCTIONALITY,
      ZCL_DATATYPE_BITMAP24,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsFunctionality
   }
  },
@@ -282,7 +282,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPS_ACTIVE_FUNCTIONALITY,
      ZCL_DATATYPE_BITMAP24,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpsActiveFunctionality
   }
  },
@@ -294,7 +294,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_MAX_PROXY_TABLE_ENTRIES,
      ZCL_DATATYPE_UINT8,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gppMaxProxyTableEntries
   }
  },
@@ -304,8 +304,8 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_PROXY_TABLE,
      ZCL_DATATYPE_LONG_OCTET_STR,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
-     (void *)&pZclGp_gppProxyTable // Use application's callback to Read this attribute
+     NULL_MANUFACTURER_CODE,
+     NULL // Use application's callback to Read this attribute
   }
  },
  {
@@ -314,7 +314,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_NOTIFICATION_RETRY_NUMBER,
      ZCL_DATATYPE_UINT8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gppNotificationRetryNumber
   }
  },
@@ -324,7 +324,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_NOTIFICATION_RETRY_TIMER,
      ZCL_DATATYPE_UINT8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gppNotificationRetryTimer
   }
  },
@@ -334,7 +334,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_MAX_SEARCH_COUNTER,
      ZCL_DATATYPE_UINT8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gppMaxSearchCounter
   }
  },
@@ -344,7 +344,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_BLOCKED_GPD_ID,
      ZCL_DATATYPE_LONG_OCTET_STR,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&pZclGp_gppBlockedGPDID
   }
  },
@@ -354,7 +354,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_FUNCTIONALITY,
      ZCL_DATATYPE_BITMAP24,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gppFunctionality
   }
  },
@@ -364,7 +364,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_GPP_ACTIVE_FUNCTIONALITY,
      ZCL_DATATYPE_BITMAP24,
      ACCESS_CONTROL_READ | ACCESS_CLIENT,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gppActiveFunctionality
   }
  },
@@ -374,7 +374,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_SHARED_SEC_KEY_TYPE,
      ZCL_DATATYPE_BITMAP8,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_GLOBAL,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpSharedSecurityKeyType
   }
  },
@@ -384,7 +384,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_SHARED_SEC_KEY,
      ZCL_DATATYPE_128_BIT_SEC_KEY,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_GLOBAL,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpSharedSecurityKey
   }
  },
@@ -394,7 +394,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_GP_LINK_KEY,
      ZCL_DATATYPE_128_BIT_SEC_KEY,
      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_GLOBAL,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_gpLinkKey
   }
  },
@@ -404,7 +404,7 @@ static CONST zclAttrRec_t zclGp_Attrs[] =
      ATTRID_CLUSTER_REVISION,
      ZCL_DATATYPE_UINT16,
      ACCESS_CONTROL_READ | ACCESS_GLOBAL,
-     (uint16_t)0,
+     NULL_MANUFACTURER_CODE,
      (void *)&zclGp_clusterRevision
   }
  }

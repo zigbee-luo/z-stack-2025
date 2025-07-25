@@ -508,6 +508,9 @@ extern "C"
 /*** Chipcon Manufacturer Code ***/
 #define CC_MANUFACTURER_CODE                            0x1001
 
+/*** null Manufacturer Code ***/
+#define NULL_MANUFACTURER_CODE                          0x0000
+
 /**
  * @defgroup ZCL_FOUNDATION_COMMAND_IDS ZCL Foundation Command IDs
  * @{
