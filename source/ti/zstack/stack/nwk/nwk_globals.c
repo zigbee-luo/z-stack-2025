@@ -92,19 +92,19 @@
  */
 // Maximums for the data buffer queue
 #ifndef NWK_MAX_DATABUFS_WAITING          //Luoyiming Fixed at 2021-08-30
-#define NWK_MAX_DATABUFS_WAITING    16    // Waiting to be sent to MAC
+#define NWK_MAX_DATABUFS_WAITING    8     // Waiting to be sent to MAC
 #endif
 
-#ifndef NWK_MAX_DATABUFS_SCHEDULED       //Luoyiming Fixed at 2021-08-30
-#define NWK_MAX_DATABUFS_SCHEDULED  10   // Timed messages to be sent
+#ifndef NWK_MAX_DATABUFS_SCHEDULED        //Luoyiming Fixed at 2021-08-30
+#define NWK_MAX_DATABUFS_SCHEDULED  5     // Timed messages to be sent
 #endif
 
-#ifndef NWK_MAX_DATABUFS_CONFIRMED       //Luoyiming Fixed at 2021-08-30
-#define NWK_MAX_DATABUFS_CONFIRMED  10   // Held after MAC confirms
+#ifndef NWK_MAX_DATABUFS_CONFIRMED        //Luoyiming Fixed at 2021-08-30
+#define NWK_MAX_DATABUFS_CONFIRMED  5     // Held after MAC confirms
 #endif
 
 #ifndef NWK_MAX_DATABUFS_TOTAL            //Luoyiming Fixed at 2021-08-30
-#define NWK_MAX_DATABUFS_TOTAL      24    // Total number of buffers
+#define NWK_MAX_DATABUFS_TOTAL      12    // Total number of buffers
 #endif
 
 // 1-255 (0 -> 256) X RTG_TIMER_INTERVAL
@@ -128,7 +128,7 @@
 // #define NWK_INDIRECT_MSG_TIMEOUT (30 * 24 * 60)
 // Maximum msgs to hold per associated device.
 #ifndef NWK_INDIRECT_MSG_MAX_PER       //Luoyiming Fixed at 2021-08-30
-#define NWK_INDIRECT_MSG_MAX_PER    6
+#define NWK_INDIRECT_MSG_MAX_PER    3
 #endif
 // Maximum total msgs to hold for all associated devices.
 #define NWK_INDIRECT_MSG_MAX_ALL    \

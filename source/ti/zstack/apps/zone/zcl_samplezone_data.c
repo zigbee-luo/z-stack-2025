@@ -171,7 +171,7 @@ CONST zclAttrRec_t zclSampleZone_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-	  NULL_MANUFACTURER_CODE,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleZone_ManufacturerName
     }
   },
@@ -266,7 +266,7 @@ CONST zclAttrRec_t zclSampleZone_Attrs[] =
         ATTRID_SS_IAS_CIE_ADDRESS,
         ZCL_DATATYPE_IEEE_ADDR,
         (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_WRITE),
-		NULL_MANUFACTURER_CODE,
+         NULL_MANUFACTURER_CODE,
         (void *)zclSampleZone_CIE_Address
       }
     },

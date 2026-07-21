@@ -210,10 +210,19 @@ extern uint8_t zdoDiscCounter;
 #if !defined( NWK_FRAMECOUNTER_CHANGES_RESTORE_DELTA )
 // Additional counts to add to the frame counter when restoring from NV
 // This amount is in addition to MAX_NWK_FRAMECOUNTER_CHANGES
-#define NWK_FRAMECOUNTER_CHANGES_RESTORE_DELTA    250
+  #define NWK_FRAMECOUNTER_CHANGES_RESTORE_DELTA    250
 #endif
 
 #define STACK_PROFILE_MAX 2
+
+#if !defined( MAX_ENERGY_SCAN_THRESHOLD )
+// Additional maximum energy scan threshold, fixed by luoyiming 2026-03-18
+  #define MAX_ENERGY_SCAN_THRESHOLD   240
+#endif
+
+#if ( MAX_ENERGY_SCAN_THRESHOLD > 240 )
+  #error  "ERROR! MAX_ENERGY_SCAN_THRESHOLD is too high"
+#endif
 
 /*********************************************************************
  * TYPEDEFS

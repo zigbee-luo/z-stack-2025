@@ -3697,7 +3697,6 @@ static int8_t NVOCMP_findItem(NVOCMP_nvHandle_t *pNvHandle, uint8_t pg, uint16_t
 {
     bool found = false;
     uint8_t p;
-    uint16_t items = 0;
     uint16_t nvSearched = 0;
 #ifdef NVOCMP_GPRAM
     uint32_t vm;
@@ -3891,8 +3890,6 @@ static int8_t NVOCMP_findItem(NVOCMP_nvHandle_t *pNvHandle, uint8_t pg, uint16_t
               ofs = 0;
               nvSearched = 0;
           }
-          // Running count of items searched
-          items += 1;
       }
     }
 #ifdef NVOCMP_GPRAM
@@ -3909,7 +3906,6 @@ static int8_t NVOCMP_findItem(NVOCMP_nvHandle_t *pNvHandle, uint8_t pg, uint16_t
 {
     bool found = false;
     uint8_t p = pg;
-    uint16_t items = 0;
     uint32_t cid = NVOCMP_CMPRID(pHdr->sysid,pHdr->itemid,pHdr->subid);
 
     // find hot id first, luoyiming 2020-05-21
@@ -4082,8 +4078,6 @@ static int8_t NVOCMP_findItem(NVOCMP_nvHandle_t *pNvHandle, uint8_t pg, uint16_t
               ofs = pNvHandle->actOffset;
 #endif
           }
-          // Running count of items searched
-          items += 1;
       }
 #if (NVOCMP_NVPAGES > NVOCMP_NVTWOP)
     }
@@ -4829,7 +4823,6 @@ static NVOCMP_compactStatus_t NVOCMP_compact(NVOCMP_nvHandle_t *pNvHandle)
     uint16_t crcOff;
     uint8_t dstPg;
     uint8_t srcPg;
-    uint32_t aItem=0;
 #ifndef NVOCMP_RAM_OPTIMIZATION
 #ifdef NVOCMP_GPRAM
     uint32_t vm;
@@ -4945,7 +4938,6 @@ static NVOCMP_compactStatus_t NVOCMP_compact(NVOCMP_nvHandle_t *pNvHandle)
                 NVOCMP_copyItem(srcPg, dstPg, crcOff, dstOff, itemSize);
 #endif
                 dstOff += itemSize;
-                aItem++;
               }
               NVOCMP_ALERT(srcOff > dataLen, "Offset overflow: srcOff")
               srcOff -= dataLen;

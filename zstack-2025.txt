@@ -5,3 +5,7 @@
 3, ZCL support attributes with manufacture code and specific command with manufacture code.
 
 4, ZDP command can set a callback function triggered by AF_DATA_CONFIRM event. 
+
+5, Modify coordinator's energy scan
+
+6, Support LP_CC1352P7-2(20dbm).

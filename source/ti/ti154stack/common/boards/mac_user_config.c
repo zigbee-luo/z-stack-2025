@@ -205,10 +205,10 @@ const uint32_t macCryptoDriverTable[] =
   };
 #endif
 
-/* CC1352R1/CC1352P1/CC1352P_2/CC1354R10_RGZ/CC1354P10_1/
+/* CC1352R1/CC1352P1/CC1352P_2/CC1352P7_2/CC1354R10_RGZ/CC1354P10_1/ (CC1352P7_2 is added by luoyiming in 2026-07-10)
    CC1354P10_6/CC1354P10_1 Configuration */
 #if defined(LAUNCHXL_CC1352R1) || defined(LAUNCHXL_CC1352P1) \
-    || defined(LAUNCHXL_CC1352P_2) || defined (LP_CC1352P7_1) \
+    || defined(LAUNCHXL_CC1352P_2) || defined (LP_CC1352P7_1) || defined (LP_CC1352P7_2)\
     || defined (LP_CC1354R10_RGZ) || defined (LP_EM_CC1354P10_1) \
     || defined (LP_EM_CC1354P10_6) || defined (LP_CC1354P10_1_RGZ)
 #if defined(COPROCESSOR)

@@ -179,7 +179,7 @@ CONST zclAttrRec_t zclSampleThermostat_Attrs[] =
       ATTRID_BASIC_MANUFACTURER_NAME,
       ZCL_DATATYPE_CHAR_STR,
       ACCESS_CONTROL_READ,
-	  NULL_MANUFACTURER_CODE,
+      NULL_MANUFACTURER_CODE,
       (void *)zclSampleThermostat_ManufacturerName
     }
   },

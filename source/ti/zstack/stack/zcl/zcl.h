@@ -1224,7 +1224,7 @@ typedef struct zclAttrRecsList
 
 /*!
  *
- * @brief  Callback function to get sub-manufacturer-code, added by luoyiming 2020-01-11.
+ * @brief  Callback function to get sub-cluster-manufacturer-code, added by luoyiming 2020-01-11.
  *         modify: change name, 2020-01-14.
  *         modify: return none-zero value if valid, 2020-01-15
  *
@@ -1232,7 +1232,7 @@ typedef struct zclAttrRecsList
  *
  * @return  none-zero value is valid
  */
-typedef uint16_t (*zclSubManuCodeCB_t)( uint16_t clusterID );
+typedef uint16_t (*zclSubClusterManuCodeCB_t)( uint16_t clusterID );
 
 /** @} End ZCL_TYPEDEFS */
 
@@ -1545,16 +1545,16 @@ extern ZStatus_t zcl_registerReadWriteCB( uint8_t endpoint, zclReadWriteCB_t pfn
                                           zclAuthorizeCB_t pfnAuthorizeCB );
 
 /*********************************************************************
- * @fn          zcl_registerSubManuCodeCB
+ * @fn          zcl_registerSubClusterManuCodeCB
  *
- * @brief       register callback function to get sub manufacturer code,
+ * @brief       register callback function to get sub cluster manufacturer code,
  *              luoyiming added at 2020-01-14
  *
- * @param       pfnGetSubManuCodeCB - pointer to callback
+ * @param       pfnGetSubClusterManuCodeCB - pointer to callback
  *
  * @return      none
  */
-extern void zcl_registerSubManuCodeCB( zclSubManuCodeCB_t pfnGetSubManuCodeCB );
+extern void zcl_registerSubClusterManuCodeCB( zclSubClusterManuCodeCB_t pfnGetSubClusterManuCodeCB );
 
 /*********************************************************************
  * @fn          zcl_GetClusterManuCode

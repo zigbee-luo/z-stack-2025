@@ -182,8 +182,8 @@ uint8_t zcl_InSeqNum = 0x00;
 
 uint8_t zcl_radius = AF_DEFAULT_RADIUS;
 
-// The Application should register callback function to get sub manufacturer code, luoyiming 2020-01-14
-zclSubManuCodeCB_t zcl_SubManuCodeCB = NULL;
+// The Application should register callback function to get sub cluster manufacturer code, luoyiming 2020-01-14
+zclSubClusterManuCodeCB_t zcl_SubClusterManuCodeCB = NULL;
 
 zclCmdHdlr_t zcl_CmdHandleCB = NULL;
 
@@ -1032,18 +1032,18 @@ ZStatus_t zcl_registerReadWriteCB( uint8_t endpoint, zclReadWriteCB_t pfnReadWri
 }
 
 /*********************************************************************
- * @fn          zcl_registerSubManuCodeCB
+ * @fn          zcl_registerSubClusterManuCodeCB
  *
- * @brief       register callback function to get sub manufacturer code,
+ * @brief       register callback function to get sub cluster manufacturer code,
  *              luoyiming added at 2020-01-14
  *
- * @param       pfnGetSubManuCodeCB - pointer to callback
+ * @param       pfnGetSubClusterManuCodeCB - pointer to callback
  *
  * @return      none
  */
-void zcl_registerSubManuCodeCB( zclSubManuCodeCB_t pfnSubManuCodeCB )
+void zcl_registerSubClusterManuCodeCB( zclSubClusterManuCodeCB_t pfnSubClusterManuCodeCB )
 {
-  zcl_SubManuCodeCB = pfnSubManuCodeCB;
+  zcl_SubClusterManuCodeCB = pfnSubClusterManuCodeCB;
 }
 
 /*********************************************************************
@@ -1065,9 +1065,9 @@ uint16_t zcl_GetClusterManuCode( uint16_t clusterID )
   {
     // current cluster support sub manufacturer code 
     // if it is sub-manufacturer-code cluster, luoyiming 2020-01-15
-    if ( zcl_SubManuCodeCB )
+    if ( zcl_SubClusterManuCodeCB )
     {
-      manuCode = zcl_SubManuCodeCB( clusterID );
+      manuCode = zcl_SubClusterManuCodeCB( clusterID );
     }
     else if( manuCode == 0 )
     {

@@ -491,7 +491,10 @@ function getRfDesignOptions()
     }
     else if(deviceId === "CC1352P7RGZ")
     {
-        newRfDesignOptions = [{name: "LP_CC1352P7-4"}];
+        newRfDesignOptions = [
+            {name: "LP_CC1352P7-4"},
+            {name: "LP_CC1352P7-2"}
+        ];
     }
     else if(deviceId === "CC2651P3RGZ")
     {

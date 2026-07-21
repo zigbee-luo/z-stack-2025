@@ -489,12 +489,12 @@ for(deviceNum = 0; deviceNum < app.length; deviceNum++)
         attributeList += '\t\t\t\t' + 'ACCESS_CONTROL_NONE' + ',\n';
       }
 
-	  if(currAttribute._manucode) {
-	    attributeList += '\t\t\t\t' + currAttribute._manucode + ',\n';
-	  }
-	  else {
-	    attributeList += '\t\t\t\t(uint16_t)0,\n';
-	  }
+      if(currAttribute._manucode) {
+        attributeList += '\t\t\t\t' + currAttribute._manucode + ',\n';
+      }
+      else {
+        attributeList += '\t\t\t\tNULL_MANUFACTURER_CODE,\n';
+      }
 
       if(currAttribute._null) {
         attributeList += '\t\t\t\t(void *)NULL //&' + variableName + '\n';
@@ -655,12 +655,12 @@ for(deviceNum = 0; deviceNum < app.length; deviceNum++)
         attributeList += '\t\t\t\t' + 'ACCESS_CONTROL_NONE' + ',\n';
       }
 
-	  if(currAttribute._manucode) {
-	    attributeList += '\t\t\t\t' + currAttribute._manucode + ',\n';
-	  }
-	  else {
-	    attributeList += '\t\t\t\t(uint16_t)0,\n';
-	  }
+      if(currAttribute._manucode) {
+        attributeList += '\t\t\t\t' + currAttribute._manucode + ',\n';
+      }
+      else {
+        attributeList += '\t\t\t\tNULL_MANUFACTURER_CODE,\n';
+      }
 
       attributeList += '\t\t\t\t(void *)&' + variableName + '\n';
       attributeList += '\t\t\t}\n';

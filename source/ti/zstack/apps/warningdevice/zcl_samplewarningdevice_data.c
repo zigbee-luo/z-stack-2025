@@ -279,7 +279,7 @@ CONST zclAttrRec_t zclSampleWarningDevice_Attrs[] =
       ATTRID_IAS_ZONE_ZONE_STATUS,
       ZCL_DATATYPE_BITMAP16,
       ACCESS_CONTROL_READ,
-	  NULL_MANUFACTURER_CODE,
+      NULL_MANUFACTURER_CODE,
       (void *)&zclSampleWarningDevice_ZoneStatus
     }
   },

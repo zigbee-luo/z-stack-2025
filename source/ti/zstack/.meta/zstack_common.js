@@ -379,6 +379,11 @@ function getBoardPhySettings(inst)
             phySettings = system.getScript("/ti/ti154stack/rf_config/"
                 + "LP_CC1352P7_4_rf_defaults.js");
         }
+        else if(rfDesign === "LP_CC1352P7-2")
+        {
+            phySettings = system.getScript("/ti/ti154stack/rf_config/"
+                + "LP_CC1352P7_2_rf_defaults.js");
+        }
     }
     else if(inst !== null && system.deviceData.deviceId === "CC2652P1FSIP")
     {

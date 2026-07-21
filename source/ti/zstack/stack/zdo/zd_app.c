@@ -948,7 +948,8 @@ void ZDApp_NetworkStartEvt( void )
   else
   {
     // Try again with a higher energy threshold
-    if ( ( NLME_GetEnergyThreshold() + ENERGY_SCAN_INCREMENT ) < 0xff )
+    // Limit the maximum energy threshold, fixed by luoyiming 2026-03-18
+    if ( ( NLME_GetEnergyThreshold() + ENERGY_SCAN_INCREMENT ) < MAX_ENERGY_SCAN_THRESHOLD )
     {
       NLME_SetEnergyThreshold( (uint8_t)(NLME_GetEnergyThreshold() + ENERGY_SCAN_INCREMENT) );
       OsalPort_setEvent( ZDAppTaskID, ZDO_NETWORK_INIT );
