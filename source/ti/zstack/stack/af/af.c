@@ -520,6 +520,9 @@ void afIncomingData( aps_FrameFormat_t *aff, zAddrType_t *SrcAddress, uint16_t S
   }
   else if ( aff->DstEndPoint == AF_BROADCAST_ENDPOINT )
   {
+    // Eend-Point broadcast is also broadcast, fixed by luoyiming 2026-09-28
+    aff->wasBroadcast = true;
+
     // Set the list
     if ( pList != NULL )
     {

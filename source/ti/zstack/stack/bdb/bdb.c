@@ -2397,9 +2397,9 @@ void bdb_requestTCStackVersion(void)
         destAddr.addrMode = Addr16Bit;
         destAddr.addr.shortAddr = 0x0000;
 
-        ZDP_NodeDescReq( &destAddr, destAddr.addr.shortAddr, 0);
+        ZDP_NodeDescReq( &destAddr, destAddr.addr.shortAddr, 0 );
 
-        OsalPortTimers_stopTimer(bdb_TaskID,BDB_PROCESS_TIMEOUT);
+        OsalPortTimers_stopTimer( bdb_TaskID,BDB_PROCESS_TIMEOUT );
         OsalPortTimers_startTimer( bdb_TaskID, BDB_PROCESS_TIMEOUT, BDBC_TC_LINK_KEY_EXANGE_TIMEOUT );
         return;
       }

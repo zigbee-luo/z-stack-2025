@@ -1308,7 +1308,7 @@ static ZStatus_t zclGp_CommissioningModeDataIndParse( gp_DataInd_t *pInd, gpComm
 {
   gpCommissioningNotificationOptions_t commissioningNtfOptions;
   int8_t RSSI;
-  uint8_t LQI;
+  uint8_t LQI = 0;
 
   zcl_memset(&commissioningNtfOptions, 0x00, sizeof(gpCommissioningNotificationOptions_t));
   if(pInd->GPDCmmdID != GP_CHANNEL_REQ_COMMAND_ID)
@@ -1424,7 +1424,7 @@ static ZStatus_t zclGp_DataIndParse( gp_DataInd_t *pInd, gpNotificationCmd_t *pG
   uint8_t  ntfOpt[2] = {0x00, 0x00};
   uint8_t i;
   int8_t RSSI;
-  uint8_t LQI;
+  uint8_t LQI = 0;
   ZStatus_t status;
 
   for(i = 0; i < GPP_MAX_PROXY_TABLE_ENTRIES ; i++)

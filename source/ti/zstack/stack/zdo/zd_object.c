@@ -3565,7 +3565,7 @@ uint8_t ZDO_ParseSimpleDescBuf( uint8_t *buf, SimpleDescriptionFormat_t *desc )
   buf += 2;
   desc->AppDeviceId = BUILD_UINT16( buf[0], buf[1] );
   buf += 2;
-  desc->AppDevVer = *buf >> 4;
+  desc->AppDevVer = *buf & 0x0F; // fixed by Luoyiming in 2026-09-14.
 
   desc->Reserved = 0;
   buf++;

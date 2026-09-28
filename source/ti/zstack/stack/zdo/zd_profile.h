@@ -558,7 +558,7 @@ extern void ZDP_ProcessDataConfirm( afDataConfirm_t* pMsg );
  * ZDP_MgmtLeaveRsp - Send a Management Leave Response
  */
 #define ZDP_MgmtLeaveRsp( TransSeq, dstAddr, Status, SecurityEnable ) \
-            ZDP_SendDataWithAck( &TransSeq, dstAddr, Mgmt_Leave_rsp, 1, &Status, SecurityEnable )
+            ZDP_SendData( &TransSeq, dstAddr, Mgmt_Leave_rsp, 1, &Status, SecurityEnable )
 
 /*
  * ZDP_MgmtPermitJoinRsp - Send a Management Permit Join Response
@@ -737,8 +737,8 @@ extern afStatus_t ZDP_EndDeviceBindReqExt( zAddrType_t *dstAddr,
 /*
  * ZDP_BindUnbindReq - bind request
  */
-#define ZDP_BindUnbindReq(cmd, dst, bsrc, bsep, cid, bdst, bdep, sec) \
-    ZDP_BindUnbindReqExt(cmd, dst, bsrc, bsep, cid, bdst, bdep, sec,  NULL, NULL)
+#define ZDP_BindUnbindReq( cmd, dst, bsrc, bsep, cid, bdst, bdep, sec ) \
+    ZDP_BindUnbindReqExt( cmd, dst, bsrc, bsep, cid, bdst, bdep, sec,  NULL, NULL )
 
 extern afStatus_t ZDP_BindUnbindReqExt( uint16_t BindOrUnbind, zAddrType_t *dstAddr,
                                         uint8_t *SourceAddr, byte SrcEP,

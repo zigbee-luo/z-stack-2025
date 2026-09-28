@@ -310,7 +310,7 @@ BindingEntry_t *bindAddEntry( byte srcEpInt,
   //Zigbee Spec 2.2.4.3.1.1
   //Cannot create an endpoint for invalid endpoint index, neither for non-Group
   //or Non-Extended IEEE Address modes
-  if( (dstAddr->addrMode != AddrGroup) && (dstAddr->addrMode != Addr64Bit) ||
+  if( ((dstAddr->addrMode != AddrGroup) && (dstAddr->addrMode != Addr64Bit)) ||
       (srcEpInt == 0) || (srcEpInt == 0xFF) )
   {
     return NULL;

@@ -864,12 +864,12 @@ PACKED_TYPEDEF_STRUCT
 /// Read Attribute Response Status record
 PACKED_TYPEDEF_STRUCT
 {
-  uint16_t attrID;            //!< attribute ID
-  uint8_t  status;            //!< should be ZCL_STATUS_SUCCESS or error
-  uint8_t  dataType;          //!< attribute data type
-  uint8_t  *data;             //!< this structure is allocated, so the data is HERE
-  void     *pAttr;            //!< be used to record attribute pointer, add by luoyiming, 2020-01-07.
-                              //!< - the size depends on the attribute data type
+  uint16_t  attrID;             //!< attribute ID
+  uint8_t   status;             //!< should be ZCL_STATUS_SUCCESS or error
+  uint8_t   dataType;           //!< attribute data type
+  uint8_t   *data;              //!< this structure is allocated, so the data is HERE
+  void      *pAttr;             //!< be used to record attribute pointer, add by luoyiming, 2020-01-07.
+                                //!< - the size depends on the attribute data type
 } zclReadRspStatus_t;
 
 /// Read Attribute Response Command format
@@ -1147,13 +1147,13 @@ typedef struct
   uint8_t   dataType;       //!< Data Type - defined in af.h
   uint8_t   accessControl;  //!< Read/write - bit field
   uint16_t  manuCode;       //!< manufacture code
-  void    *dataPtr;         //!< Pointer to data field
+  void      *dataPtr;         //!< Pointer to data field
 } zclAttribute_t;
 
 /// Attribute record
 typedef struct
 {
-  uint16_t          clusterID;    //!< Real cluster ID
+  uint16_t        clusterID;    //!< Real cluster ID
   zclAttribute_t  attr;
 } zclAttrRec_t;
 
@@ -1206,9 +1206,9 @@ typedef struct
 /// Parse received command
 typedef struct
 {
-  uint8_t  endpoint; //!< End Point
-  uint16_t dataLen; //!< Buffer Length
-  uint8_t  *pData; //!< Pointer to the buffer
+  uint8_t   endpoint; //!< End Point
+  uint16_t  dataLen; //!< Buffer Length
+  uint8_t   *pData; //!< Pointer to the buffer
 } zclParseCmd_t;
 
 /// Attribute record list item

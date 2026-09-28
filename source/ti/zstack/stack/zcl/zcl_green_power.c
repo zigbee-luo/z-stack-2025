@@ -722,7 +722,7 @@ ZStatus_t zclGp_SendGpCommissioningNotificationCommand( gpCommissioningNotificat
 
 
   // This is an encrypted gp success frame
-  if(((pCmd->options & (1 << 9)) == FALSE) && (pCmd->cmdId == GP_SUCCESS_COMMAND_ID) ||
+  if((((pCmd->options & (1 << 9)) == FALSE) && (pCmd->cmdId == GP_SUCCESS_COMMAND_ID)) ||
     (((pCmd->options & (1 << 9)) == TRUE) && (pCmd->payloadLen == 0x01)))
   {
     pCmd->payloadLen = 0x00;

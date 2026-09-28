@@ -1047,7 +1047,7 @@ void bdb_ProcessRespondentList( void )
     //Send IEEE addr request or simple desc req
     if(pRespondentCurr->attempts & FINDING_AND_BINDING_MISSING_IEEE_ADDR)
     {
-      ZDP_IEEEAddrReq(pRespondentCurr->data.addr.shortAddr,0,0,0);
+      ZDP_IEEEAddrReq( pRespondentCurr->data.addr.shortAddr, 0, 0, 0 );
     }
     else
     {

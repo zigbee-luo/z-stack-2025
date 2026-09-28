@@ -1045,7 +1045,7 @@ void otaServer_ProcessSysApp_ReadAttrReq(uint8_t *pData)
 
   // Send the command
   zcl_SendRead(OTA_SERVER_ENDPOINT, &dstAddr, cluster, pReadCmd,
-               ZCL_FRAME_SERVER_CLIENT_DIR, TRUE, otaServer_SeqNo++);
+               ZCL_FRAME_SERVER_CLIENT_DIR, TRUE, NULL_MANUFACTURER_CODE, otaServer_SeqNo++);
 }
 
 /*********************************************************************

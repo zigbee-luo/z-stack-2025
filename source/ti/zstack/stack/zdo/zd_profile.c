@@ -128,6 +128,43 @@
   return stat;                                        \
 }
 
+#define FillAndSendConfirm( TRANSSEQ, ADDR, ID, LEN, cb, param ) {  \
+  afStatus_t stat;                                    \
+  ZDP_afCnfCB = cb;                                   \
+  ZDP_afCnfParam = param;                             \
+  stat = fillAndSend( (TRANSSEQ), (ADDR), (ID), (LEN) );          \
+  ZDP_afCnfCB = NULL;                                 \
+  ZDP_afCnfParam = NULL;                              \
+  return stat;                                        \
+}
+
+#define FillAndSendTxOptionsConfirm( TRANSSEQ, ADDR, ID, LEN, TxO, cb, param ) {  \
+  afStatus_t stat;                                    \
+  ZDP_TxOptions = (TxO);                              \
+  ZDP_afCnfCB = cb;                                   \
+  ZDP_afCnfParam = param;                             \
+  stat = fillAndSend( (TRANSSEQ), (ADDR), (ID), (LEN) );          \
+  ZDP_TxOptions = AF_TX_OPTIONS_NONE;                 \
+  ZDP_afCnfCB = NULL;                                 \
+  ZDP_afCnfParam = NULL;                              \
+  return stat;                                        \
+}
+
+#define FillAndSendBufferTxOptionsConfirm( TRANSSEQ, ADDR, ID, LEN, BUF, TxO, cb, param ) { \
+  afStatus_t stat;                                    \
+  ZDP_TmpBuf = (BUF)+1;                               \
+  ZDP_TxOptions = (TxO);                              \
+  ZDP_afCnfCB = cb;                                   \
+  ZDP_afCnfParam = param;                             \
+  stat = fillAndSend( (TRANSSEQ), (ADDR), (ID), (LEN) );          \
+  ZDP_afCnfCB = NULL;                                 \
+  ZDP_afCnfParam = NULL;                              \
+  OsalPort_free( (BUF) );                             \
+  ZDP_TmpBuf = ZDP_Buf+1;                             \
+  ZDP_TxOptions = AF_TX_OPTIONS_NONE;                 \
+  return stat;                                        \
+}
+
 /*********************************************************************
  * CONSTANTS
  */
@@ -279,8 +316,6 @@ static afStatus_t fillAndSend( uint8_t *transSeq, zAddrType_t *addr, cId_t clust
 
   status = AF_DataRequestExt( &afAddr, &ZDApp_epDesc, clusterID, (uint16_t)(len+1), (uint8_t*)(ZDP_TmpBuf-1),
                               &ZDP_TransID, ZDP_TxOptions, AF_DEFAULT_RADIUS, ZDP_afCnfCB, ZDP_afCnfParam );
-  ZDP_afCnfCB = NULL;
-  ZDP_afCnfParam = NULL;
 
   if ( status == afStatus_SUCCESS )
   {
@@ -303,7 +338,7 @@ static afStatus_t fillAndSend( uint8_t *transSeq, zAddrType_t *addr, cId_t clust
  * @param       SecurityEnable - Security Options
  * @param       cnfCB - Confirm Callback, fixed by luoyiming 2021-04-26
  * @param       param - Confirm Callback param, fixed by luoyiming 2021-04-26
- * @param       ackReq - Enable APS Ack Request
+ * @param       ackReq - Enable APS retry
  *
  * @return      afStatus_t
  */
@@ -318,14 +353,11 @@ afStatus_t ZDP_SendDataExt( uint8_t *TransSeq, zAddrType_t *dstAddr, uint16_t cm
     *pBuf++ = *buf++;
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
   //Enable APS Ack request for some ZDP command,added by Luoyiming
-  FillAndSendTxOptions( TransSeq, dstAddr, cmd, len,
-                       ((SecurityEnable) ? AF_EN_SECURITY : 0)
-                         |((ackReq) ? AF_MSG_ACK_REQUEST : 0) );
+  // new function FillAndSendTxOptionsConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendTxOptionsConfirm( TransSeq, dstAddr, cmd, len,
+                               ((SecurityEnable) ? AF_EN_SECURITY : 0) |((ackReq) ? AF_MSG_ACK_REQUEST : 0),
+                               cnfCB, param);
 }
 
 /*********************************************************************
@@ -385,11 +417,8 @@ afStatus_t ZDP_NWKAddrOfInterestReqExt( zAddrType_t *dstAddr, uint16_t nwkAddr, 
   ZDP_TmpBuf[0] = LO_UINT16( nwkAddr );
   ZDP_TmpBuf[1] = HI_UINT16( nwkAddr );
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, cmd, 2 );
+  // new function FillAndSendTxOptionsConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, cmd, 2, cnfCB, param );
 }
 
 /*********************************************************************
@@ -435,11 +464,8 @@ afStatus_t ZDP_NwkAddrReqExt( uint8_t *IEEEAddress, byte ReqType, byte StartInde
   *pBuf++ = ReqType;
   *pBuf++ = StartIndex;
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, &dstAddr, NWK_addr_req, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, &dstAddr, NWK_addr_req, len, cnfCB, param );
 }
 
 /*********************************************************************
@@ -493,11 +519,8 @@ afStatus_t ZDP_IEEEAddrReqExt( uint16_t shortAddr, byte ReqType, byte StartIndex
   *pBuf++ = ReqType;
   *pBuf++ = StartIndex;
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, &dstAddr, IEEE_addr_req, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, &dstAddr, IEEE_addr_req, len, cnfCB, param );
 }
 
 /*********************************************************************
@@ -578,11 +601,8 @@ afStatus_t ZDP_MatchDescReqExt( zAddrType_t *dstAddr, uint16_t nwkAddr,
     }
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Match_Desc_req, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Match_Desc_req, len, cnfCB, param );
 }
 
 /*********************************************************************
@@ -611,11 +631,8 @@ afStatus_t ZDP_SimpleDescReqExt( zAddrType_t *dstAddr, uint16_t nwkAddr, byte en
   ZDP_TmpBuf[1] = HI_UINT16( nwkAddr );
   ZDP_TmpBuf[2] = endPoint;
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Simple_Desc_req, 3 );
+  // new function FillAndSendTxOptionsConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Simple_Desc_req, 3, cnfCB, param );
 }
 
 /*********************************************************************
@@ -655,11 +672,8 @@ afStatus_t ZDP_UserDescSetExt( zAddrType_t *dstAddr, uint16_t nwkAddr,
 
   OsalPort_memcpy( pBuf, UserDescriptor->desc, len );
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, User_Desc_set, (AF_MAX_USER_DESCRIPTOR_LEN + addrLen) );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, User_Desc_set, (AF_MAX_USER_DESCRIPTOR_LEN + addrLen), cnfCB, param );
 }
 
 /*********************************************************************
@@ -685,12 +699,10 @@ afStatus_t ZDP_ServerDiscReqExt( uint16_t serverMask, byte SecurityEnable, pfnAf
   *pBuf++ = LO_UINT16( serverMask );
   *pBuf = HI_UINT16( serverMask );
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  FillAndSendTxOptions( &ZDP_SeqNum, &dstAddr, Server_Discovery_req, 2,
-             ((SecurityEnable) ? AF_EN_SECURITY : AF_TX_OPTIONS_NONE) );
+  // new function FillAndSendTxOptionsConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendTxOptionsConfirm( &ZDP_SeqNum, &dstAddr, Server_Discovery_req, 2,
+                               ((SecurityEnable) ? AF_EN_SECURITY : AF_TX_OPTIONS_NONE),
+                               cnfCB, param);
 }
 
 /*********************************************************************
@@ -728,11 +740,8 @@ afStatus_t ZDP_DeviceAnnceExt( uint16_t nwkAddr, uint8_t *IEEEAddr, byte capabil
   ZDP_TmpBuf[10] = capabilities;
   len++;
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, &dstAddr, Device_annce, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, &dstAddr, Device_annce, len, cnfCB, param );
 }
 
 /*********************************************************************
@@ -1176,7 +1185,8 @@ afStatus_t ZDP_SimpleDescMsg( zdoIncomingMsg_t *inMsg, byte Status,
     *pBuf = 0; // Description Length = 0;
   }
 
-  return fillAndSend( &(inMsg->TransSeq), &(inMsg->srcAddr), Simple_Desc_rsp, len );
+  // response enable APS retry in whatever, fixed by luoyiming 2026-09-20
+  FillAndSendTxOptions( &(inMsg->TransSeq), &(inMsg->srcAddr), Simple_Desc_rsp, len, AF_MSG_ACK_REQUEST );
 }
 
 /*********************************************************************
@@ -1204,14 +1214,8 @@ afStatus_t ZDP_EPRsp( uint16_t MsgType, byte TransSeq, zAddrType_t *dstAddr,
 {
   uint8_t *pBuf = ZDP_TmpBuf;
   byte len = 1 + 2 + 1;  // Status + nwkAddr + endpoint/interface count.
-  byte txOptions;
 
   (void)SecurityEnable;  // Intentionally unreferenced parameter
-
-  if ( MsgType == Match_Desc_rsp )
-    txOptions = AF_MSG_ACK_REQUEST;
-  else
-    txOptions = 0;
 
     *pBuf++ = Status;
   *pBuf++ = LO_UINT16( nwkAddr );
@@ -1225,7 +1229,8 @@ afStatus_t ZDP_EPRsp( uint16_t MsgType, byte TransSeq, zAddrType_t *dstAddr,
     OsalPort_memcpy( pBuf, pEPList, Count );
   }
 
-  FillAndSendTxOptions( &TransSeq, dstAddr, MsgType, len, txOptions );
+  // EP response enable APS retry in whatever, fixed by luoyiming 2026-09-20
+  FillAndSendTxOptions( &TransSeq, dstAddr, MsgType, len, AF_MSG_ACK_REQUEST );
 }
 
 /*********************************************************************
@@ -1260,7 +1265,8 @@ ZStatus_t ZDP_UserDescRsp( byte TransSeq, zAddrType_t *dstAddr,
   *pBuf++ = userDesc->len;
   OsalPort_memcpy( pBuf, userDesc->desc, userDesc->len );
 
-  return (ZStatus_t)fillAndSend( &TransSeq, dstAddr, User_Desc_rsp, len );
+  // response enable APS retry in whatever, fixed by luoyiming 2026-09-20
+  FillAndSendTxOptions( &TransSeq, dstAddr, User_Desc_rsp, len, AF_MSG_ACK_REQUEST );
 }
 
 /*********************************************************************
@@ -1418,11 +1424,8 @@ afStatus_t ZDP_EndDeviceBindReqExt( zAddrType_t *dstAddr,
     *pBuf++ = HI_UINT16(OutClusterList[i]);
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, End_Device_Bind_req, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, End_Device_Bind_req, len, cnfCB, param );
 }
 
 /*********************************************************************
@@ -1441,7 +1444,7 @@ afStatus_t ZDP_EndDeviceBindReqExt( zAddrType_t *dstAddr,
  * @param       DstEPIntf - destination endpoint/interface
  * @param       SecurityEnable - Security Options
  * @param       cnfCB - Send Confirm Callback
- * @param       param - Send Confirm Callback Parameter
+ * @param       cnfParam - Send Confirm Callback Parameter
  *
  * @return      afStatus_t
  */
@@ -1449,11 +1452,10 @@ afStatus_t ZDP_BindUnbindReqExt( uint16_t BindOrUnbind, zAddrType_t *dstAddr,
                                  uint8_t *SourceAddr, byte SrcEndPoint,
                                  cId_t ClusterID,
                                  zAddrType_t *destinationAddr, byte DstEndPoint,
-                                 byte SecurityEnable, pfnAfCnfCB cnfCB, void* param )
+                                 byte SecurityEnable, pfnAfCnfCB cnfCB, void* cnfParam)
 {
   uint8_t *pBuf = ZDP_TmpBuf;
   byte len;
-  byte txOption = 0;
 
   (void)SecurityEnable;  // Intentionally unreferenced parameter
 
@@ -1482,15 +1484,10 @@ afStatus_t ZDP_BindUnbindReqExt( uint16_t BindOrUnbind, zAddrType_t *dstAddr,
     *pBuf++ = HI_UINT16( destinationAddr->addr.shortAddr );
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-  if( (cnfCB == NULL) || (param == NULL) )
-  {
-    txOption = AF_MSG_ACK_REQUEST; // fixed by luoyiming, 2022-12-20
-  }
-
-  FillAndSendTxOptions( &ZDP_SeqNum, dstAddr, BindOrUnbind, len, txOption );
+  // new function FillAndSendTxOptionsConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendTxOptionsConfirm( &ZDP_SeqNum, dstAddr, BindOrUnbind, len,
+                               ( ( (cnfCB == NULL) && (cnfParam == NULL) ) ? AF_MSG_ACK_REQUEST : 0 ),
+                               cnfCB, cnfParam );
 }
 
 /*********************************************************************
@@ -1531,11 +1528,8 @@ afStatus_t ZDP_MgmtNwkDiscReqExt( zAddrType_t *dstAddr,
   *pBuf++ = ScanDuration;
   *pBuf = StartIndex;
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Mgmt_NWK_Disc_req, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Mgmt_NWK_Disc_req, len, cnfCB, param );
 }
 
 /*********************************************************************
@@ -1564,11 +1558,8 @@ afStatus_t ZDP_MgmtDirectJoinReqExt( zAddrType_t *dstAddr,
   osal_cpyExtAddr( ZDP_TmpBuf, deviceAddr );
   ZDP_TmpBuf[Z_EXTADDR_LEN] = capInfo;
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Mgmt_Direct_Join_req, (Z_EXTADDR_LEN + 1) );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Mgmt_Direct_Join_req, (Z_EXTADDR_LEN + 1), cnfCB, param );
 }
 
 /*********************************************************************
@@ -1619,13 +1610,8 @@ afStatus_t ZDP_MgmtPermitJoinReqExt( zAddrType_t *dstAddr, byte duration, byte T
 #endif
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  // Send the message
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Mgmt_Permit_Join_req,
-                      ZDP_MGMT_PERMIT_JOIN_REQ_SIZE );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Mgmt_Permit_Join_req, ZDP_MGMT_PERMIT_JOIN_REQ_SIZE, cnfCB, param );
 }
 
 /*********************************************************************
@@ -1662,11 +1648,8 @@ afStatus_t ZDP_MgmtLeaveReqExt( zAddrType_t *dstAddr, uint8_t *IEEEAddr, uint8_t
     ZDP_TmpBuf[Z_EXTADDR_LEN] |= ZDP_MGMT_LEAVE_REQ_REJOIN;
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Mgmt_Leave_req, (Z_EXTADDR_LEN + 1) );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Mgmt_Leave_req, (Z_EXTADDR_LEN + 1), cnfCB, param );
 }
 
 /*********************************************************************
@@ -1726,11 +1709,8 @@ afStatus_t ZDP_MgmtNwkUpdateReqExt( zAddrType_t *dstAddr,
     }
   }
 
-  // set send confirm callback
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  return fillAndSend( &ZDP_SeqNum, dstAddr, Mgmt_NWK_Update_req, len );
+  // new function FillAndSendConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendConfirm( &ZDP_SeqNum, dstAddr, Mgmt_NWK_Update_req, len, cnfCB, param );
 }
 
 
@@ -1900,7 +1880,8 @@ ZStatus_t ZDP_MgmtLqiRsp( byte TransSeq, zAddrType_t *dstAddr,
     list++; // next list entry
   }
 
-  FillAndSendBuffer( &TransSeq, dstAddr, Mgmt_Lqi_rsp, len, buf );
+  // enable APS retry for ZDP-Response, fixed by luoyiming 2026-09-20
+  FillAndSendBufferTxOptions( &TransSeq, dstAddr, Mgmt_Lqi_rsp, len, buf, AF_MSG_ACK_REQUEST );
 }
 
 /*********************************************************************
@@ -1982,7 +1963,8 @@ ZStatus_t ZDP_MgmtRtgRsp( byte TransSeq, zAddrType_t *dstAddr,
     RoutingTableList++;    // Move to next list entry
   }
 
-  FillAndSendBuffer( &TransSeq, dstAddr, Mgmt_Rtg_rsp, len, buf );
+  // enable APS retry for ZDP-Response, fixed by luoyiming 2026-09-20
+  FillAndSendBufferTxOptions( &TransSeq, dstAddr, Mgmt_Rtg_rsp, len, buf, AF_MSG_ACK_REQUEST );
 }
 
 /*********************************************************************
@@ -2068,7 +2050,8 @@ ZStatus_t ZDP_MgmtBindRsp( byte TransSeq, zAddrType_t *dstAddr,
     BindingTableList++;    // Move to next list entry
   }
 
-  FillAndSendBuffer( &TransSeq, dstAddr, Mgmt_Bind_rsp, len, buf );
+  // enable APS retry for ZDP-Response, fixed by luoyiming 2026-09-20
+  FillAndSendBufferTxOptions( &TransSeq, dstAddr, Mgmt_Bind_rsp, len, buf, AF_MSG_ACK_REQUEST );
 }
 
 /*********************************************************************
@@ -2130,11 +2113,8 @@ afStatus_t ZDP_MgmtNwkUpdateNotifyExt( uint8_t TransSeq, zAddrType_t *dstAddr,
   if ( listCount > 0 )
     OsalPort_memcpy( pBuf, energyValues, listCount );
 
-  // set send confirm callback, luoyiming fixed at 2022-01-28
-  ZDP_afCnfCB = cnfCB;
-  ZDP_afCnfParam = param;
-
-  FillAndSendBufferTxOptions( &TransSeq, dstAddr, Mgmt_NWK_Update_notify, len, buf, txOptions );
+  // new function FillAndSendBufferTxOptionsConfirm, fixed by luoyiming 2026-09-20
+  FillAndSendBufferTxOptionsConfirm( &TransSeq, dstAddr, Mgmt_NWK_Update_notify, len, buf, txOptions, cnfCB, param );
 }
 
 /*********************************************************************

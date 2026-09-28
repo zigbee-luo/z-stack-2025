@@ -11163,7 +11163,7 @@ ZStatus_t zclSE_PrepaymentSendPublishPrepaySnapshot(
 {
   ZStatus_t status;
   uint8_t *pCmdBuf;
-  uint16_t cmdBufLen;
+  uint16_t cmdBufLen = 0;
   uint8_t *pBuf;
 
   // Check for a non fragmented, valid "payload" field, then calculate length
